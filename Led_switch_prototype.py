@@ -1,8 +1,12 @@
-import RPi.GPIO as Pin
-import time
-Pin.setmode(Pin.BCM)
+import RPi.GPIO as Pin #import the GPIO library
+import time # allows us to use the function 'time.sleep()'
+Pin.setmode(Pin.BCM) # tells which numbering order to use between BCM and BOARD
 Pin.setwarnings(False)
 
+#those lines are to assign names of colors to the GPIO pins
+#The numbers here are the GPIO outputs connected to the cathode of the LEDs
+#You are free to use as much LEDs and whatever colors you want to use with the GPIO-LED-Switch
+#Just make sure these variables match with hardware
 white2=18
 White2=18
 green=24
@@ -16,7 +20,9 @@ Yellow=16
 white=21
 White=21
 none="none"
+#I added a variable 'none' so that the user can exit the programm without using ^C.
 
+#With the interactive switch, users will be able to turn on, turn off, and make the Leds blink.
 def turnON(color):
 	Pin.setup(color,Pin.OUT)
 	Pin.output(color,Pin.HIGH)
@@ -39,6 +45,7 @@ def blink(color, blink_time):
 		time.sleep(0.25)
 	print "end"
 
+#The app starts by asking for the user's name
 name = raw_input( """
 	Hello. First, let's introduce ourselves. I'm Switch and my job is to
 	control the lights plugged on the breadboard. And you, what's your name?
@@ -50,6 +57,7 @@ print ("""
 	turn them off, and even make them blink for as long as you want.
 
 				All you have to do is type.""") % name
+#next, it gives them option
 
 while True:
 	action = raw_input("""
@@ -60,7 +68,8 @@ while True:
 		To learn about the colors at your disposal, type 'color'
 		
 		>""")
-		
+	
+#You will have to modify this part too if you are not planning on using the same LEDs I used
 	if action == "color":
 			print("""
 	The colors are white, yellow, red, blue, green, and white2
@@ -96,4 +105,4 @@ while True:
 	if action == "none":
 		break
 
-print "\n\tYou exit the switch. See you next time %s!" % name
+print "\n\tYou exit the switch. See you next time %s!" % name #Finally, a line to inform the user they exited the app.
