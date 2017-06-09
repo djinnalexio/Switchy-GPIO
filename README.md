@@ -1,4 +1,4 @@
-# GPIO-Led-switch
+# GPIO-Interactive-Led-switch
 
 HI. This project is an interactive switch to control leds connected to a Raspberry pi 3 model B via GPIO.
 
