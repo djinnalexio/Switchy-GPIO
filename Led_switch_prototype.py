@@ -74,20 +74,20 @@ while True:
 			>white, red
 	""")
 	
-	if action.lower() == "on":
-		color.lower() = input("\tWhich led do you want to turn on?\n\t\t>")
+	if action == "on":
+		color = input("\tWhich led do you want to turn on?\n\t\t>")
 		if color == none:
 			break
 		turnON(color)
 	
-	if action.lower() == "off":
-		color.lower() = input("\tWhich led do you want to turn off?\n\t\t>")
+	if action == "off":
+		color = input("\tWhich led do you want to turn off?\n\t\t>")
 		if color == none:
 			break
 		turnOFF(color)
 		
-	if action.lower() == "blink":
-		color.lower() = input("\tWhich led do you want to blink?\n\t\t>")
+	if action == "blink":
+		color = input("\tWhich led do you want to blink?\n\t\t>")
 		if color == "none":
 			break
 		ask_blink_time = raw_input("\tFor how long do you want the light to blink?(in seconds)\n\t\t>")
@@ -96,7 +96,7 @@ while True:
 		blink_time = int(ask_blink_time)
 		blink(color, blink_time)
 		
-	if action.lower() == "none":
+	if action == "none":
 		break
 
-print "\n\tYou exit the switch. See you next time %s!" % name #Finally, a line to inform the user they exited the app.
+print "\n\tYou exit the switch! See you next time %s!" % name #Finally, a line to inform the user they exited the app.
