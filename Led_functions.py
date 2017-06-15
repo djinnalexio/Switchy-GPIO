@@ -24,7 +24,7 @@ def turnOFF(color):
 def blink(color, blink_time):
 	count = range(0,blink_time)
 	for i in count:
-		print i + 1
+		#print i + 1
 		turnON(color)
 		time.sleep(0.25)
 		turnOFF(color)
