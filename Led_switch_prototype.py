@@ -14,6 +14,9 @@ red=12
 yellow=16
 white=21
 none="none"
+
+color = [ white, white2, green, blue, red, yellow]
+
 #I added a variable 'none' so that the user can exit the programm without using ^C.
 
 #With the interactive switch, users will be able to turn on, turn off, and make the Leds blink.
@@ -41,7 +44,7 @@ def blink(color, blink_time):
 
 #The app starts by asking for the user's name
 name = raw_input( """
-	Hello. First, let's introduce ourselves. I'm Switch and my job is to
+	Hello. First, let's introduce ourselves. I'm Switchy and my job is to
 	control the lights plugged on the breadboard. And you, what's your name?
 				->""")
 
@@ -51,7 +54,7 @@ print ("""
 	turn them off, and even make them blink for as long as you want.
 
 				All you have to do is type.""") % name
-#next, it gives them option
+#next, it gives them options
 
 while True:
 	action = raw_input("""
@@ -76,25 +79,25 @@ while True:
 	
 	if action == "on":
 		color = input("\tWhich led do you want to turn on?\n\t\t>")
-		if color == none:
+		if color.lower() == none:
 			break
 		turnON(color)
 	
 	if action == "off":
 		color = input("\tWhich led do you want to turn off?\n\t\t>")
-		if color == none:
+		if color.lower() == none:
 			break
 		turnOFF(color)
 		
 	if action == "blink":
 		color = input("\tWhich led do you want to blink?\n\t\t>")
-		if color == "none":
+		if color.lower() == "none":
 			break
 		ask_blink_time = raw_input("\tFor how long do you want the light to blink?(in seconds)\n\t\t>")
 		if ask_blink_time == none:
 			break
 		blink_time = int(ask_blink_time)
-		blink(color, blink_time)
+		blink(color, blink_time).lower()
 		
 	if action == "none":
 		break
