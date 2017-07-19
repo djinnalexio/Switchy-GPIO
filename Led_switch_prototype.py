@@ -15,8 +15,6 @@ yellow=16
 white=21
 none="none"
 
-color = [ white, white2, green, blue, red, yellow]
-
 #I added a variable 'none' so that the user can exit the programm without using ^C.
 
 #With the interactive switch, users will be able to turn on, turn off, and make the Leds blink.
@@ -67,7 +65,7 @@ while True:
 		>""")
 	
 #You will have to modify this part too if you are not planning on using the same LEDs I used
-	if action.lower() == "color":
+	if action == "color":
 			print("""
 	The colors are white, yellow, red, blue, green, and white2
 	
@@ -79,25 +77,25 @@ while True:
 	
 	if action == "on":
 		color = input("\tWhich led do you want to turn on?\n\t\t>")
-		if color.lower() == none:
+		if color == none:
 			break
 		turnON(color)
 	
 	if action == "off":
 		color = input("\tWhich led do you want to turn off?\n\t\t>")
-		if color.lower() == none:
+		if color == none:
 			break
 		turnOFF(color)
 		
 	if action == "blink":
 		color = input("\tWhich led do you want to blink?\n\t\t>")
-		if color.lower() == "none":
+		if color == "none":
 			break
 		ask_blink_time = raw_input("\tFor how long do you want the light to blink?(in seconds)\n\t\t>")
 		if ask_blink_time == none:
 			break
 		blink_time = int(ask_blink_time)
-		blink(color, blink_time).lower()
+		blink(color, blink_time)
 		
 	if action == "none":
 		break
