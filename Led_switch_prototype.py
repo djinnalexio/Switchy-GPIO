@@ -9,7 +9,7 @@ Pin.setwarnings(False)
 #Just make sure these variables match with hardware
 white2=18
 green=24
-blue=8
+blue=25
 red=12
 yellow=16
 white=21
