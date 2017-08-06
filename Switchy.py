@@ -62,7 +62,7 @@ def blink(color):
 		time.sleep(1)
 		return
 	
-	print "\n\tThe light(s) will be blinking for %s seconds.\nSpeed: %s blink/sec." % (ask_duration, ask_blink_speed)
+	print "\n\tThe light(s) will be blinking for %s seconds.\n\tSpeed: %s blink/sec." % (ask_duration, ask_blink_speed)
 
 	print "		•‿•Starting in:"
 	time.sleep(1)
@@ -70,12 +70,10 @@ def blink(color):
 		print "\t\t\t",3 - i
 		time.sleep(1)
 
-	t_s_b = time.time()
-	end_blink = time.time() + duration
-	while time.time() < end_blink:
-		t_c_b = time.time()
-		c_b = int(t_c_b - t_s_b)
-		print c_b
+	t_s_b = time.time()#time start blink
+	end_blink = time.time() + duration#time end blink
+	while time.time() < end_blink:#while current time is small then end time
+		print (int(time.time() - t_s_b))# count blink = current time - time start blink
 		Pin.output(color,Pin.HIGH)
 		time.sleep(blink_inter)
 		Pin.output(color,Pin.LOW)
@@ -84,6 +82,285 @@ def blink(color):
 
 	print "\n\tWell, 'looks like that's it! anything else?!^‿^\n"
 	time.sleep(0.5)
+
+
+def moving_light():
+	"Pattern 1: moving light"
+
+	duration = raw_input("\n\tFor how long do you want the pattern to run for? (in seconds)\n\t\t>")
+	if duration.isdigit():
+		duration = int(duration)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	speed = raw_input("\n\tChoose a speed for the lights•‿•\n\t\t>")
+	if speed.isdigit() :
+		inter = (1/3.0) / int(speed)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
+
+	print "		•‿•Starting in:"
+	time.sleep(1)	
+	for i in range(0,3):
+		print "\t\t\t",3 - i
+		time.sleep(1)
+
+	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
+	while time.time() < etp: 
+		print (int(time.time() - stp))# elased time = current time - time start blink
+		Pin.output(white2,True)
+		
+		time.sleep(inter)
+		Pin.output(white2,False)
+		Pin.output(green,True)
+		
+		time.sleep(inter)
+		Pin.output(green,False)
+		Pin.output(blue,True)
+		
+		time.sleep(inter)
+		Pin.output(blue,False)
+		Pin.output(red,True)
+		
+		time.sleep(inter)
+		Pin.output(red,False)
+		Pin.output(yellow,True)
+		
+		time.sleep(inter)
+		Pin.output(yellow,False)
+		Pin.output(white,True)
+		
+		time.sleep(inter)
+		Pin.output(white,False)
+
+def moving_light2():
+	"Pattern 1: moving light"
+
+	duration = raw_input("\n\tFor how long do you want the pattern to run for? (in seconds)\n\t\t>")
+	if duration.isdigit():
+		duration = int(duration)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	speed = raw_input("\n\tChoose a speed for the lights•‿•\n\t\t>")
+	if speed.isdigit() :
+		inter = (1/3.0) / int(speed)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
+
+	print "		•‿•Starting in:"
+	time.sleep(1)	
+	for i in range(0,3):
+		print "\t\t\t",3 - i
+		time.sleep(1)
+
+	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
+	while time.time() < etp: 
+		print (int(time.time() - stp))# elased time = current time - time start blink
+		Pin.output(white2,True)
+		
+		time.sleep(inter)
+		Pin.output(white,False)
+		Pin.output(green,True)
+		
+		time.sleep(inter)
+		Pin.output(white2,False)
+		Pin.output(blue,True)
+		
+		time.sleep(inter)
+		Pin.output(green,False)
+		Pin.output(red,True)
+		
+		time.sleep(inter)
+		Pin.output(blue,False)
+		Pin.output(yellow,True)
+		
+		time.sleep(inter)
+		Pin.output(red,False)
+		Pin.output(white,True)
+		
+		time.sleep(inter)
+		Pin.output(yellow,False)
+	
+	time.sleep(inter)	
+	Pin.output(white,False)
+	
+def moving_shadow():
+	"Pattern 1: moving light"
+
+	duration = raw_input("\n\tFor how long do you want the pattern to run for? (in seconds)\n\t\t>")
+	if duration.isdigit():
+		duration = int(duration)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	speed = raw_input("\n\tChoose a speed for the lights•‿•\n\t\t>")
+	if speed.isdigit() :
+		inter = (1/3.0) / int(speed)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
+
+	time.sleep(1)
+	Pin.output(colors, True)
+
+	print "		•‿•Starting in:"
+	time.sleep(1)	
+	for i in range(0,3):
+		print "\t\t\t",3 - i
+		time.sleep(1)
+
+	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
+	while time.time() < etp: 
+		print (int(time.time() - stp))# elased time = current time - time start blink
+		Pin.output(white2,False)
+		
+		time.sleep(inter)
+		Pin.output(white2,True)
+		Pin.output(green,False)
+		
+		time.sleep(inter)
+		Pin.output(green,True)
+		Pin.output(blue,False)
+		
+		time.sleep(inter)
+		Pin.output(blue,True)
+		Pin.output(red,False)
+		
+		time.sleep(inter)
+		Pin.output(red,True)
+		Pin.output(yellow,False)
+		
+		time.sleep(inter)
+		Pin.output(yellow,True)
+		Pin.output(white,False)
+		
+		time.sleep(inter)
+		Pin.output(white,True)
+	
+	time.sleep(1)
+	Pin.output(colors, False)
+
+def moving_shadow2():
+	"Pattern 1: moving light"
+
+	duration = raw_input("\n\tFor how long do you want the pattern to run for? (in seconds)\n\t\t>")
+	if duration.isdigit():
+		duration = int(duration)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	speed = raw_input("\n\tChoose a speed for the lights•‿•\n\t\t>")
+	if speed.isdigit() :
+		inter = (1/3.0) / int(speed)
+	else:
+		print ("""
+				✖﹏✖
+		✖﹏✖ Sorry, I didn't get what you meant... ✖﹏✖
+				✖﹏✖
+
+	""")
+		time.sleep(1)
+		return
+	
+	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
+
+	time.sleep(1)
+	Pin.output(colors, True)
+
+	print "		•‿•Starting in:"
+	time.sleep(1)	
+	for i in range(0,3):
+		print "\t\t\t",3 - i
+		time.sleep(1)
+
+	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
+	while time.time() < etp: 
+		print (int(time.time() - stp))# elased time = current time - time start blink
+		Pin.output(white2,False)
+		
+		time.sleep(inter)
+		Pin.output(white,True)
+		Pin.output(green,False)
+		
+		time.sleep(inter)
+		Pin.output(white2,True)
+		Pin.output(blue,False)
+		
+		time.sleep(inter)
+		Pin.output(green,True)
+		Pin.output(red,False)
+		
+		time.sleep(inter)
+		Pin.output(blue,True)
+		Pin.output(yellow,False)
+		
+		time.sleep(inter)
+		Pin.output(red,True)
+		Pin.output(white,False)
+		
+		time.sleep(inter)
+		Pin.output(yellow,True)
+	
+	time.sleep(inter)	
+	Pin.output(white,True)
+	
+	time.sleep(1)
+	Pin.output(colors, False)
 
 
 while True:#Skip Intro?
@@ -135,7 +412,7 @@ while True:#Skip Intro?
 		break
 		
 	elif s_i == 'y':
-		username = raw_input("name: ")
+		username = raw_input("\nname: ")
 		break
 		
 	else:
@@ -271,14 +548,64 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 			time.sleep(0.5)
 
 	elif action == '4':#LIGHT SHOWS
-		print 'Sorry but this option is not available yet'
+		print("""
+	Hi there! So you're interested in light shows?•‿•
+			
+			Alright! Let's have fun! ^‿^
+""")
+
+		raw_input()
+
+		print("""
+	Here are the available light shows:
+
+1:Moving Light
+
+2:Moving Light 2
+
+3:Moving Shadow
+
+4:Moving Shadow 2
+
+		^‿^ So, what do you want to do?
+			""")
+			
+		l_s = raw_input("""			Type a number here ->""")
+
+		if l_s == '1':#Moving Light
+			moving_light()
+			time.sleep(0.5)
+
+		elif l_s == '2':#Moving Light 2
+			moving_light2()
+			time.sleep(0.5)
+
+		elif l_s == '3':#Moving Shadow
+			moving_shadow()
+			time.sleep(0.5)
+
+		elif l_s == '4':#Moving Shadow 2
+			moving_shadow2()
+			time.sleep(0.5)
+
+		else:#not defined
+			time.sleep(1)
+			print("""
+				✖﹏✖
+		✖﹏✖ Sorry. I didn't understand what you typed. ✖﹏✖
+				✖﹏✖
+
+	""")
+			time.sleep(1)
 		
 	elif action == '5':#HELP
 		print 'Sorry but this option is not available yet'
 
 	elif action == '6':#STOP
-		print ("Alright %s. See you next time! ^‿^") % username
-		
+		print ("\tAlright %s. See you next time! ^‿^\n") % username
+		print("""
+☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
+""")
 		break
 
 	else:#not defined
@@ -289,4 +616,4 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 				✖﹏✖
 
 	""")
-		time.sleep(0.25)
+		time.sleep(0.5)
