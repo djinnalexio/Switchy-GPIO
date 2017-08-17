@@ -150,7 +150,7 @@ def moving_light():
 		Pin.output(white,False)
 
 def moving_light2():
-	"Pattern 1: moving light"
+	"Pattern 2: 2 moving lights"
 
 	duration = raw_input("\n\tFor how long do you want the pattern to run for? (in seconds)\n\t\t>")
 	if duration.isdigit():
@@ -218,7 +218,7 @@ def moving_light2():
 	Pin.output(white,False)
 	
 def moving_shadow():
-	"Pattern 1: moving light"
+	"Pattern 3: moving shadow"
 
 	duration = raw_input("\n\tFor how long do you want the pattern to run for? (in seconds)\n\t\t>")
 	if duration.isdigit():
@@ -289,7 +289,7 @@ def moving_shadow():
 	Pin.output(colors, False)
 
 def moving_shadow2():
-	"Pattern 1: moving light"
+	"Pattern 4: 2 moving shadows"
 
 	duration = raw_input("\n\tFor how long do you want the pattern to run for? (in seconds)\n\t\t>")
 	if duration.isdigit():
@@ -361,6 +361,7 @@ def moving_shadow2():
 	
 	time.sleep(1)
 	Pin.output(colors, False)
+
 
 
 while True:#Skip Intro?
@@ -439,113 +440,125 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 	time.sleep(0.5)
 		
 	if action == '1':#Turn ON
-		ask_color = raw_input("\tWhich light do you want to turn ON?\n\t\t>");
-		color = ask_color.lower()
-		time.sleep(0.5)
-
-		if color == 'all' or color == 'all of them':
-			Pin.output(colors,Pin.HIGH)
-			print "\n\tAll the lights are now on. •‿•\n"
+		while True:
+			ask_color = raw_input("\tWhich light do you want to turn ON?\n\t\t>");
+			color = ask_color.lower()
 			time.sleep(0.5)
 
-		elif color == 'blue':
-			turnON(blue)
-			
-		elif color == 'green':
-			turnON(green)
-			
-		elif color == 'red':
-			turnON(red)			
-		
-		elif color == 'white':
-			turnON(white)
-			
-		elif color == 'white2':
-			turnON(white2)			
-			
-		elif color == 'yellow':
-			turnON(yellow)
+			if color == 'all' or color == 'all of them':
+				Pin.output(colors,Pin.HIGH)
+				print "\n\tAll the lights are now on. •‿•\n"
+				time.sleep(0.5)
 
-		else:
-			print("""
+			elif color == 'blue':
+				turnON(blue)
+			
+			elif color == 'green':
+				turnON(green)
+			
+			elif color == 'red':
+				turnON(red)			
+		
+			elif color == 'white':
+				turnON(white)
+			
+			elif color == 'white2':
+				turnON(white2)			
+			
+			elif color == 'yellow':
+				turnON(yellow)
+
+			elif color == 'none' or color == '':
+				break
+
+			else:
+				print("""
 				✖﹏✖
 		✖﹏✖ Sorry but this color is not available. ✖﹏✖
 				✖﹏✖
 
 	""")
-			time.sleep(0.5)
+				time.sleep(0.5)
 			
 	elif action == '2':#Turn OFF
-		ask_color = raw_input("\tWhich led do you want to turn OFF?\n\t\t>")
-		color = ask_color.lower()
-		time.sleep(0.5)
-
-		if color == 'all' or color == 'all of them':
-			Pin.output(colors,Pin.LOW)
-			print "\n\tAll the lights are now off. •‿•\n"
+		while True:
+			ask_color = raw_input("\tWhich light do you want to turn OFF?\n\t\t>");
+			color = ask_color.lower()
 			time.sleep(0.5)
 
-		elif color == 'blue':
-			turnOFF(blue)
-			
-		elif color == 'green':
-			turnOFF(green)
-			
-		elif color == 'red':
-			turnOFF(red)			
-		
-		elif color == 'white':
-			turnOFF(white)
-			
-		elif color == 'white2':
-			turnOFF(white2)			
-			
-		elif color == 'yellow':
-			turnOFF(yellow)
+			if color == 'all' or color == 'all of them':
+				Pin.output(colors,Pin.LOW)
+				print "\n\tAll the lights are now off. •‿•\n"
+				time.sleep(0.5)
 
-		else:
-			print("""
+			elif color == 'blue':
+				turnOFF(blue)
+			
+			elif color == 'green':
+				turnOFF(green)
+			
+			elif color == 'red':
+				turnOFF(red)			
+		
+			elif color == 'white':
+				turnOFF(white)
+			
+			elif color == 'white2':
+				turnOFF(white2)			
+			
+			elif color == 'yellow':
+				turnOFF(yellow)
+
+			elif color == 'none' or color == '':
+				break
+
+			else:
+				print("""
 				✖﹏✖
 		✖﹏✖ Sorry but this color is not available. ✖﹏✖
 				✖﹏✖
 
 	""")
-			time.sleep(0.5)
-
+				time.sleep(0.5)
+			
 	elif action == '3':#BLINK
-		ask_color = raw_input("\tWhich led do you want to blink?\n\t\t>")
-		color = ask_color.lower()
-		time.sleep(0.5)
+		while True:
+			ask_color = raw_input("\tWhich led do you want to blink?\n\t\t>")
+			color = ask_color.lower()
+			time.sleep(0.5)
 
-		if color == 'all' or color == 'all of them':
-			blink(colors)
+			if color == 'all' or color == 'all of them':
+				blink(colors)
 
-		elif color == 'blue':
-			blink(blue)
+			elif color == 'blue':
+				blink(blue)
 			
-		elif color == 'green':
-			blink(green)
+			elif color == 'green':
+				blink(green)
 			
-		elif color == 'red':
-			blink(red)			
+			elif color == 'red':
+				blink(red)			
 		
-		elif color == 'white':
-			blink(white)
+			elif color == 'white':
+				blink(white)
 			
-		elif color == 'white2':
-			blink(white2)			
+			elif color == 'white2':
+				blink(white2)			
 			
-		elif color == 'yellow':
-			blink(yellow)
+			elif color == 'yellow':
+				blink(yellow)
 
-		else:
-			print("""
+			elif color == 'none' or color == '':
+				break
+
+			else:
+				print("""
 				✖﹏✖
 		✖﹏✖ Sorry but this color is not available. ✖﹏✖
 				✖﹏✖
 
 	""")
-			time.sleep(0.5)
+				time.sleep(0.5)
 
 	elif action == '4':#LIGHT SHOWS
 		print("""
@@ -553,10 +566,10 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 			
 			Alright! Let's have fun! ^‿^
 """)
-
-		raw_input()
-
-		print("""
+		time.sleep(1)
+		
+		while True:
+			print("""
 	Here are the available light shows:
 
 1:Moving Light
@@ -570,33 +583,41 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 		^‿^ So, what do you want to do?
 			""")
 			
-		l_s = raw_input("""			Type a number here ->""")
+			l_s = raw_input("""			Type a number here ->""")
 
-		if l_s == '1':#Moving Light
-			moving_light()
-			time.sleep(0.5)
+			if l_s == '1':#Moving Light
+				moving_light()
+				time.sleep(0.5)
 
-		elif l_s == '2':#Moving Light 2
-			moving_light2()
-			time.sleep(0.5)
+			elif l_s == '2':#Moving Light 2
+				moving_light2()
+				time.sleep(0.5)
 
-		elif l_s == '3':#Moving Shadow
-			moving_shadow()
-			time.sleep(0.5)
+			elif l_s == '3':#Moving Shadow
+				moving_shadow()
+				time.sleep(0.5)
 
-		elif l_s == '4':#Moving Shadow 2
-			moving_shadow2()
-			time.sleep(0.5)
+			elif l_s == '4':#Moving Shadow 2
+				moving_shadow2()
+				time.sleep(0.5)
 
-		else:#not defined
-			time.sleep(1)
-			print("""
+
+
+
+
+
+			elif l_s == 'none' or l_s == '':#exit light shows
+				break
+
+			else:#not defined
+				time.sleep(1)
+				print("""
 				✖﹏✖
 		✖﹏✖ Sorry. I didn't understand what you typed. ✖﹏✖
 				✖﹏✖
 
 	""")
-			time.sleep(1)
+				time.sleep(1)
 		
 	elif action == '5':#HELP
 		print 'Sorry but this option is not available yet'
