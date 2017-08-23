@@ -527,7 +527,7 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 	2:Turn OFF lights
 							6:STOP Switchy
 3:Make lights BLINK
-						7:Give Feedback
+						7:Give FEEDBACK
 	4:Start LIGHT SHOWS
 						
 		^‿^ So, what do you want to do?""")
