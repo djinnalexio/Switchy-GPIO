@@ -14,14 +14,15 @@ green=24 #18
 Pin.setup(green, Pin.OUT)
 red=12 #32
 Pin.setup(red, Pin.OUT)
-white=21 #40
-Pin.setup(white, Pin.OUT)
-white2=17 #11
+white2=21 #40
 Pin.setup(white2, Pin.OUT)
+white=17 #11
+Pin.setup(white, Pin.OUT)
 yellow=16 #36
 Pin.setup(yellow, Pin.OUT)
 
-colors = (blue, green, red, white, white2, yellow)
+colors = (blue, green, red, white2, white, yellow)
+leds = [blue, green, red, white2, white, yellow]
 
 def turnON(color):
 	"Turns on lights"
@@ -125,31 +126,11 @@ def moving_light():
 
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
-		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(white2,True)
-		
-		time.sleep(inter)
-		Pin.output(white2,False)
-		Pin.output(green,True)
-		
-		time.sleep(inter)
-		Pin.output(green,False)
-		Pin.output(blue,True)
-		
-		time.sleep(inter)
-		Pin.output(blue,False)
-		Pin.output(red,True)
-		
-		time.sleep(inter)
-		Pin.output(red,False)
-		Pin.output(yellow,True)
-		
-		time.sleep(inter)
-		Pin.output(yellow,False)
-		Pin.output(white,True)
-		
-		time.sleep(inter)
-		Pin.output(white,False)
+		for i in leds:
+			print (int(time.time() - stp))# elased time = current time - time start blink
+			Pin.output(i,True)
+			time.sleep(inter)
+			Pin.output(i,False)
 		
 def moving_light2():
 	"Pattern 2: 2 moving lights"
@@ -191,14 +172,14 @@ def moving_light2():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(white2,True)
-		
-		time.sleep(inter)
-		Pin.output(white,False)
-		Pin.output(green,True)
+		Pin.output(white,True)
 		
 		time.sleep(inter)
 		Pin.output(white2,False)
+		Pin.output(green,True)
+		
+		time.sleep(inter)
+		Pin.output(white,False)
 		Pin.output(blue,True)
 		
 		time.sleep(inter)
@@ -211,13 +192,13 @@ def moving_light2():
 		
 		time.sleep(inter)
 		Pin.output(red,False)
-		Pin.output(white,True)
+		Pin.output(white2,True)
 		
 		time.sleep(inter)
 		Pin.output(yellow,False)
 	
 	time.sleep(inter)	
-	Pin.output(white,False)
+	Pin.output(white2,False)
 	
 def moving_shadow():
 	"Pattern 3: moving shadow"
@@ -262,10 +243,10 @@ def moving_shadow():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(white2,False)
+		Pin.output(white,False)
 		
 		time.sleep(inter)
-		Pin.output(white2,True)
+		Pin.output(white,True)
 		Pin.output(green,False)
 		
 		time.sleep(inter)
@@ -282,10 +263,10 @@ def moving_shadow():
 		
 		time.sleep(inter)
 		Pin.output(yellow,True)
-		Pin.output(white,False)
+		Pin.output(white2,False)
 		
 		time.sleep(inter)
-		Pin.output(white,True)
+		Pin.output(white2,True)
 	
 	time.sleep(1)
 	Pin.output(colors, False)
@@ -333,14 +314,14 @@ def moving_shadow2():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(white2,False)
-		
-		time.sleep(inter)
-		Pin.output(white,True)
-		Pin.output(green,False)
+		Pin.output(white,False)
 		
 		time.sleep(inter)
 		Pin.output(white2,True)
+		Pin.output(green,False)
+		
+		time.sleep(inter)
+		Pin.output(white,True)
 		Pin.output(blue,False)
 		
 		time.sleep(inter)
@@ -353,13 +334,13 @@ def moving_shadow2():
 		
 		time.sleep(inter)
 		Pin.output(red,True)
-		Pin.output(white,False)
+		Pin.output(white2,False)
 		
 		time.sleep(inter)
 		Pin.output(yellow,True)
 	
 	time.sleep(inter)	
-	Pin.output(white,True)
+	Pin.output(white2,True)
 	
 	time.sleep(1)
 	Pin.output(colors, False)
@@ -419,12 +400,12 @@ help_main_menu = """
 help_color = """
 		The colors are(from right to left):
 		
-		white	
+		white2	
 			green
 		blue
 			red
 		yellow
-			white2
+			white
 		
 		To select all the lights at the same time, type 'All of them'.
 		
@@ -557,11 +538,11 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 			elif color == 'red':
 				turnON(red)			
 		
-			elif color == 'white':
-				turnON(white)
-			
 			elif color == 'white2':
-				turnON(white2)			
+				turnON(white2)
+			
+			elif color == 'white':
+				turnON(white)			
 			
 			elif color == 'yellow':
 				turnON(yellow)
@@ -598,11 +579,11 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 			elif color == 'red':
 				turnOFF(red)			
 		
-			elif color == 'white':
-				turnOFF(white)
-			
 			elif color == 'white2':
-				turnOFF(white2)			
+				turnOFF(white2)
+			
+			elif color == 'white':
+				turnOFF(white)			
 			
 			elif color == 'yellow':
 				turnOFF(yellow)
@@ -637,11 +618,11 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 			elif color == 'red':
 				blink(red)			
 		
-			elif color == 'white':
-				blink(white)
-			
 			elif color == 'white2':
-				blink(white2)			
+				blink(white2)
+			
+			elif color == 'white':
+				blink(white)			
 			
 			elif color == 'yellow':
 				blink(yellow)
