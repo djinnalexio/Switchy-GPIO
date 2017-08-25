@@ -365,6 +365,73 @@ def moving_shadow2():
 	Pin.output(colors, False)
 
 
+help_answer = """
+		When you are in a menu, choose an option by typing the
+		number in front of it and pressing RETURN(ENTER).
+		
+		When I ask you questions, please enter only values or
+		or terms I can use. For example, when I ask for a color,
+		you should only type one of the available ones.
+		
+		If I ask for a value (such as the duration and speed),
+		please only use digits or else I won't understand.
+		
+		To return to the main menu, answer a question with 'none'.
+		
+		"""
+
+help_main_menu = """
+		When in the MAIN MENU, select an action
+			by typing its number:
+			
+		1	You can turn on a light or all the lights at once.
+			!!It doesn't have any effect if the light is already on.
+		
+		2	You can turn off a light or all the lights at once.
+			!!It doesn't have any effect if the light is already off.
+		
+		3	You can make a light blink or make all the lights
+					blink together.
+			!!While a light is blinking, NOTHING ELSE can be done until
+				the end of the entered duration. Thus, you will have to
+				wait for this long before doing anything else!
+			!!After blinking, the light(s) will always end up off
+				regardless of the starting state.
+			!!While the lights are blinking, I will displayed the
+						elasped time.
+			
+		4	You can watch light shows! You can even control the 
+				duration and the speed of the selected light show!
+			!!Just like with the option '3', you CAN'T DO ANYTHING
+				during the light show
+			!!To assure a smooth start, lights will be automatically
+				turned off before starting the light show.
+			
+		5	You can ask me to show you these instructions again.
+		
+		6	You can leave anytime you want from here. 
+		
+		7	You can type feedback. I will use your impressions and 
+				suggestions to get even better!
+		
+		"""
+
+help_color = """
+		The colors are(from right to left):
+		
+		white	
+			green
+		blue
+			red
+		yellow
+			white2
+		
+		To select all the lights at the same time, type 'All of them'.
+		
+		Type 'none' if you want to go back to the main menu.
+				"""
+
+				
 while True:#Skip Intro?
 	skip_intro = raw_input("Do you want to skip the introduction? 'Y' or 'N' >")
 	s_i = skip_intro.lower()
@@ -418,80 +485,14 @@ while True:#Skip Intro?
 		
 		raw_input()
 		
-		help_answer = """
-		When you are in a menu, choose an option by typing the
-		number in front of it and pressing RETURN(ENTER).
-		
-		When I ask you questions, please enter only values or
-		or terms I can use. For example, when I ask for a color,
-		you should only type one of the available ones.
-		
-		If I ask for a value (such as the duration and speed),
-		please only use digits or else I won't understand.
-		
-		To return to the main menu, answer a question with 'none'.
-		
-		"""
-		
 		print help_answer
 		
 		raw_input()
-		
-		help_main_menu = """
-		When in the MAIN MENU, select an action
-			by typing its number:
-			
-		1	You can turn on a light or all the lights at once.
-			!!It doesn't have any effect if the light is already on.
-		
-		2	You can turn off a light or all the lights at once.
-			!!It doesn't have any effect if the light is already off.
-		
-		3	You can make a light blink or make all the lights
-					blink together.
-			!!While a light is blinking, NOTHING ELSE can be done until
-				the end of the entered duration. Thus, you will have to
-				wait for this long before doing anything else!
-			!!After blinking, the light(s) will always end up off
-				regardless of the starting state.
-			!!While the lights are blinking, I will displayed the
-						elasped time.
-			
-		4	You can watch light shows! You can even control the 
-				duration and the speed of the selected light show!
-			!!Just like with the option '3', you CAN'T DO ANYTHING
-				during the light show
-			!!To assure a smooth start, lights will be automatically
-				turned off before starting the light show.
-			
-		5	You can ask me to show you these instructions again.
-		
-		6	You can leave anytime you want from here. 
-		
-		7	You can type feedback. I will use your impressions and 
-				suggestions to get even better!
-		
-		"""
 		
 		print help_main_menu
 		
 		raw_input()
 		
-		help_color = """
-		The colors are(from left to right):
-		
-		white	
-			green
-		blue
-			red
-		yellow
-			white2
-		
-		To select all the lights at the same time, type 'All of them'.
-		
-		Type 'none' if you want to go back to the main menu.
-				"""
-				
 		print help_color
 		
 		raw_input()
@@ -504,7 +505,7 @@ while True:#Skip Intro?
 		
 		""")
 		
-		time_sleep(1)
+		time.sleep(1)
 		
 		break
 		
@@ -514,7 +515,7 @@ while True:#Skip Intro?
 		
 	else:
 		print ("\n<Please answer with Y for 'Yes' or N for 'No'>\n")
-:"
+
 while True:#app main menu: on, off, blink, light shows, help, (leave)
 		
 	print("""
@@ -672,7 +673,7 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 1:Moving Light
 
 2:Moving Light 2
-
+									0:Back to main menu
 3:Moving Shadow
 
 4:Moving Shadow 2
@@ -723,7 +724,7 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 
 1:Ansewring Questions
 
-2:Main Menu			4:Back to main menu
+2:Main Menu							0:Back to main menu
 
 3:Colors
 			""")
@@ -776,14 +777,13 @@ while True:#app main menu: on, off, blink, light shows, help, (leave)
 		
 		feedback.close()
 		
-		time_sleep(0.5)
+		time.sleep(0.5)
 		
 		print("""
 		
 		•‿•Thank you for your opinion!•‿•
 		""")
-		
-		
+	
 	else:#not defined
 		time.sleep(1)
 		print("""
