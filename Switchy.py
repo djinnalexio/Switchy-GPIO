@@ -4,7 +4,7 @@
 import RPi.GPIO as Pin
 import time
 Pin.setmode(Pin.BCM)
-Pin.setwarnings(False)
+Pin.setwarnings(True)
 
 #grounds = 6, 9, 14, 20, 25, 30, 34, 39
 
@@ -412,365 +412,367 @@ help_color = """
 		Type 'none' if you want to go back to the main menu.
 				"""
 
-				
-while True:#Skip Intro?
-	skip_intro = raw_input("Do you want to skip the introduction? 'Y' or 'N' >")
-	s_i = skip_intro.lower()
 
-	if s_i == 'n':
-	#asking for name
-		print ("""
-☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
+try:				
+	while True:#Skip Intro?
+		skip_intro = raw_input("Do you want to skip the introduction? 'Y' or 'N' >")
+		s_i = skip_intro.lower()
 
-		Hello friend. Nice to meet you! I'm Switchy!^‿^""")
+		if s_i == 'n':
+		#asking for name
+			print ("""
+	☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
 
-		raw_input()
+			Hello friend. Nice to meet you! I'm Switchy!^‿^""")
 
-		print ("""
-		I bet you're here because you wanna know how to
-		  turn on the lights connected to the Pi!^‿^""")
+			raw_input()
 
-		raw_input()
+			print ("""
+			I bet you're here because you wanna know how to
+			  turn on the lights connected to the Pi!^‿^""")
 
-		print ("""
-		If I'm right, then don't worry 'cause you're at
-				the right place!^‿^""")
+			raw_input()
 
-		raw_input()
+			print ("""
+			If I'm right, then don't worry 'cause you're at
+					the right place!^‿^""")
 
-		print("""
-		^‿^You see, I'm the application that allows you
-			to control those lights.""")
+			raw_input()
 
-		raw_input()
+			print("""
+			^‿^You see, I'm the application that allows you
+				to control those lights.""")
 
-		username = raw_input("""
-			But before we get to business,
-			  may I have your name? •‿•
-				◊""")
+			raw_input()
 
-		print("""
-☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
+			username = raw_input("""
+				But before we get to business,
+				  may I have your name? •‿•
+					◊""")
 
-		So your name is %s. Ok!•‿•"""
-		) % username
-		
-		raw_input()
-		
-		#first time explanation
-		
-		print("""
-	•‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿•
-	
-		It's time to see how things work^‿^""")
-		
-		raw_input()
-		
-		print help_answer
-		
-		raw_input()
-		
-		print help_main_menu
-		
-		raw_input()
-		
-		print help_color
-		
-		raw_input()
-		
-		print("""
-		We're done with the introduction and the explanation.
-		Now, enjoy!
-		
+			print("""
+	☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
+
+			So your name is %s. Ok!•‿•"""
+			) % username
+			
+			raw_input()
+			
+			#first time explanation
+			
+			print("""
 		•‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿•
 		
-		""")
-		
-		time.sleep(1)
-		
-		break
-		
-	elif s_i == 'y':
-		username = raw_input("\nname: ")
-		break
-		
-	else:
-		print ("\n<Please answer with Y for 'Yes' or N for 'No'>\n")
-
-while True:#app main menu: on, off, blink, light shows, help, (leave)
-		
-	print("""
-☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
-				♦MAIN MENU♦
-
-
-1:Turn ON lights
-						5:Ask for HELP
-	2:Turn OFF lights
-							6:STOP Switchy
-3:Make lights BLINK
-						7:Give FEEDBACK
-	4:Start LIGHT SHOWS
-						
-		^‿^ So, what do you want to do?""")
-	action = raw_input("""			Type a number here ->""")
+			It's time to see how things work^‿^""")
 			
-	print '\n_______________________________________________________\n'
-	time.sleep(0.5)
-		
-	if action == '1':#Turn ON
-		while True:
-			ask_color = raw_input("\tWhich light do you want to turn ON?\n\t\t>");
-			color = ask_color.lower()
-			time.sleep(0.5)
-
-			if color == 'all' or color == 'all of them':
-				Pin.output(colors,Pin.HIGH)
-				print "\n\tAll the lights are now on. •‿•\n"
-				time.sleep(0.5)
-
-			elif color == 'blue':
-				turnON(blue)
+			raw_input()
 			
-			elif color == 'green':
-				turnON(green)
+			print help_answer
 			
-			elif color == 'red':
-				turnON(red)			
-		
-			elif color == 'white2':
-				turnON(white2)
+			raw_input()
 			
-			elif color == 'white':
-				turnON(white)			
+			print help_main_menu
 			
-			elif color == 'yellow':
-				turnON(yellow)
-
-			elif color == 'none' or color == '':
-				break
-
-			else:
-				print("""
-				✖﹏✖
-		✖﹏✖ Sorry but this color is not available. ✖﹏✖
-				✖﹏✖
-
-	""")
-				time.sleep(0.5)
+			raw_input()
 			
-	elif action == '2':#Turn OFF
-		while True:
-			ask_color = raw_input("\tWhich light do you want to turn OFF?\n\t\t>");
-			color = ask_color.lower()
-			time.sleep(0.5)
-
-			if color == 'all' or color == 'all of them':
-				Pin.output(colors,Pin.LOW)
-				print "\n\tAll the lights are now off. •‿•\n"
-				time.sleep(0.5)
-
-			elif color == 'blue':
-				turnOFF(blue)
+			print help_color
 			
-			elif color == 'green':
-				turnOFF(green)
+			raw_input()
 			
-			elif color == 'red':
-				turnOFF(red)			
-		
-			elif color == 'white2':
-				turnOFF(white2)
-			
-			elif color == 'white':
-				turnOFF(white)			
-			
-			elif color == 'yellow':
-				turnOFF(yellow)
-
-			elif color == 'none' or color == '':
-				break
-
-			else:
-				print("""
-				✖﹏✖
-		✖﹏✖ Sorry but this color is not available. ✖﹏✖
-				✖﹏✖
-
-	""")
-				time.sleep(0.5)
-			
-	elif action == '3':#BLINK
-		while True:
-			ask_color = raw_input("\tWhich led do you want to blink?\n\t\t>")
-			color = ask_color.lower()
-			time.sleep(0.5)
-
-			if color == 'all' or color == 'all of them':
-				blink(colors)
-
-			elif color == 'blue':
-				blink(blue)
-			
-			elif color == 'green':
-				blink(green)
-			
-			elif color == 'red':
-				blink(red)			
-		
-			elif color == 'white2':
-				blink(white2)
-			
-			elif color == 'white':
-				blink(white)			
-			
-			elif color == 'yellow':
-				blink(yellow)
-
-			elif color == 'none' or color == '':
-				break
-
-			else:
-				print("""
-				✖﹏✖
-		✖﹏✖ Sorry but this color is not available. ✖﹏✖
-				✖﹏✖
-
-	""")
-				time.sleep(0.5)
-
-	elif action == '4':#LIGHT SHOWS
-		print("""
-	Hi there! So you're interested in light shows?•‿•
-			
-			Alright! Let's have fun! ^‿^
-""")
-		time.sleep(1)
-		
-		while True:
 			print("""
-	Here are the available light shows:
-
-1:Moving Light
-
-2:Moving Light 2
-									0:Back to main menu
-3:Moving Shadow
-
-4:Moving Shadow 2
-
-		^‿^ So, what do you want to do?
-			""")
+			We're done with the introduction and the explanation.
+			Now, enjoy!
 			
-			l_s = raw_input("""			Type a number here ->""")
-
-			if l_s == '1':#Moving Light
-				moving_light()
-				time.sleep(0.5)
-
-			elif l_s == '2':#Moving Light 2
-				moving_light2()
-				time.sleep(0.5)
-
-			elif l_s == '3':#Moving Shadow
-				moving_shadow()
-				time.sleep(0.5)
-
-			elif l_s == '4':#Moving Shadow 2
-				moving_shadow2()
-				time.sleep(0.5)
-
-
-
-
-
-
-			elif l_s == 'none' or l_s == '':#exit light shows
-				break
-
-			else:#not defined
-				time.sleep(1)
-				print("""
-				✖﹏✖
-		✖﹏✖ Sorry. I didn't understand what you typed. ✖﹏✖
-				✖﹏✖
-
-	""")
-				time.sleep(1)
-		
-	elif action == '5':#HELP
-		while True:
-			print("""
-		^‿^ So, what do you need help with?
-
-1:Ansewring Questions
-
-2:Main Menu							0:Back to main menu
-
-3:Colors
-			""")
+			•‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿• ^‿^ •‿•
 			
-			ask_h = raw_input("""			Type a number here ->""")
+			""")
 			
 			time.sleep(1)
+			
+			break
+			
+		elif s_i == 'y':
+			username = raw_input("\nname: ")
+			break
+			
+		else:
+			print ("\n<Please answer with Y for 'Yes' or N for 'No'>\n")
 
-			if ask_h == '1':#help with Ansewring Questions
-				print help_answer
-				
-			elif ask_h == '2':#help with main menu
-				print help_main_menu
-				
-			elif ask_h == '3':#help with colors
-				print help_color
-				
-			elif ask_h == '4':#back to main menu
-				break
-				
-			else:#not defined
-				print("""
-				✖﹏✖
-		✖﹏✖ Sorry. Can you repeat?. ✖﹏✖
-				✖﹏✖
+	while True:#app main menu: on, off, blink, light shows, help, (leave)
+			
+		print("""
+	☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
+					♦MAIN MENU♦
 
-	""")
+
+	1:Turn ON lights
+							5:Ask for HELP
+		2:Turn OFF lights
+								6:STOP Switchy
+	3:Make lights BLINK
+							7:Give FEEDBACK
+		4:Start LIGHT SHOWS
+							
+			^‿^ So, what do you want to do?""")
+		action = raw_input("""			Type a number here ->""")
+				
+		print '\n_______________________________________________________\n'
+		time.sleep(0.5)
+			
+		if action == '1':#Turn ON
+			while True:
+				ask_color = raw_input("\tWhich light do you want to turn ON?\n\t\t>");
+				color = ask_color.lower()
 				time.sleep(0.5)
 
-	elif action == '6':#STOP
-		print ("\tAlright %s. See you next time! ^‿^\n") % username
-		print("""
-☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
-""")
-		break
+				if color == 'all' or color == 'all of them':
+					Pin.output(colors,Pin.HIGH)
+					print "\n\tAll the lights are now on. •‿•\n"
+					time.sleep(0.5)
 
-	elif action == '7':#Suggestions
-		feedback = open('Switchy_suggestions.txt','a+')
-		
-		print("""
-		•‿• Alright! Here, I'll let you write what you think of me,
-			and how you would like me to change to improve myself •‿•
-		 """)
-		 		
-		suggestion = raw_input("\t\tFeedback:\n\t>")
-		
-		new_suggestion = "%s\n\n" % suggestion
-		
-		feedback.write(new_suggestion)
-		
-		feedback.close()
-		
-		time.sleep(0.5)
-		
-		print("""
-		
-		•‿•Thank you for your opinion!•‿•
+				elif color == 'blue':
+					turnON(blue)
+				
+				elif color == 'green':
+					turnON(green)
+				
+				elif color == 'red':
+					turnON(red)			
+			
+				elif color == 'white2':
+					turnON(white2)
+				
+				elif color == 'white':
+					turnON(white)			
+				
+				elif color == 'yellow':
+					turnON(yellow)
+
+				elif color == 'none' or color == '':
+					break
+
+				else:
+					print("""
+					✖﹏✖
+			✖﹏✖ Sorry but this color is not available. ✖﹏✖
+					✖﹏✖
+
 		""")
-	
-	else:#not defined
-		time.sleep(1)
-		print("""
-				✖﹏✖
-		✖﹏✖ Sorry but I didn't get it... ✖﹏✖
-				✖﹏✖
+					time.sleep(0.5)
+				
+		elif action == '2':#Turn OFF
+			while True:
+				ask_color = raw_input("\tWhich light do you want to turn OFF?\n\t\t>");
+				color = ask_color.lower()
+				time.sleep(0.5)
 
+				if color == 'all' or color == 'all of them':
+					Pin.output(colors,Pin.LOW)
+					print "\n\tAll the lights are now off. •‿•\n"
+					time.sleep(0.5)
+
+				elif color == 'blue':
+					turnOFF(blue)
+				
+				elif color == 'green':
+					turnOFF(green)
+				
+				elif color == 'red':
+					turnOFF(red)			
+			
+				elif color == 'white2':
+					turnOFF(white2)
+				
+				elif color == 'white':
+					turnOFF(white)			
+				
+				elif color == 'yellow':
+					turnOFF(yellow)
+
+				elif color == 'none' or color == '':
+					break
+
+				else:
+					print("""
+					✖﹏✖
+			✖﹏✖ Sorry but this color is not available. ✖﹏✖
+					✖﹏✖
+
+		""")
+					time.sleep(0.5)
+				
+		elif action == '3':#BLINK
+			while True:
+				ask_color = raw_input("\tWhich led do you want to blink?\n\t\t>")
+				color = ask_color.lower()
+				time.sleep(0.5)
+
+				if color == 'all' or color == 'all of them':
+					blink(colors)
+
+				elif color == 'blue':
+					blink(blue)
+				
+				elif color == 'green':
+					blink(green)
+				
+				elif color == 'red':
+					blink(red)			
+			
+				elif color == 'white2':
+					blink(white2)
+				
+				elif color == 'white':
+					blink(white)			
+				
+				elif color == 'yellow':
+					blink(yellow)
+
+				elif color == 'none' or color == '':
+					break
+
+				else:
+					print("""
+					✖﹏✖
+			✖﹏✖ Sorry but this color is not available. ✖﹏✖
+					✖﹏✖
+
+		""")
+					time.sleep(0.5)
+
+		elif action == '4':#LIGHT SHOWS
+			print("""
+		Hi there! So you're interested in light shows?•‿•
+				
+				Alright! Let's have fun! ^‿^
 	""")
-		time.sleep(0.5)
+			time.sleep(1)
+			
+			while True:
+				print("""
+		Here are the available light shows:
+
+	1:Moving Light
+
+	2:Moving Light 2
+										0:Back to main menu
+	3:Moving Shadow
+
+	4:Moving Shadow 2
+
+			^‿^ So, what do you want to do?
+				""")
+				
+				l_s = raw_input("""			Type a number here ->""")
+
+				if l_s == '1':#Moving Light
+					moving_light()
+					time.sleep(0.5)
+
+				elif l_s == '2':#Moving Light 2
+					moving_light2()
+					time.sleep(0.5)
+
+				elif l_s == '3':#Moving Shadow
+					moving_shadow()
+					time.sleep(0.5)
+
+				elif l_s == '4':#Moving Shadow 2
+					moving_shadow2()
+					time.sleep(0.5)
+
+				elif l_s == '0':#exit light shows
+					break
+
+				else:#not defined
+					time.sleep(1)
+					print("""
+					✖﹏✖
+			✖﹏✖ Sorry. I didn't understand what you typed. ✖﹏✖
+					✖﹏✖
+
+		""")
+					time.sleep(1)
+			
+		elif action == '5':#HELP
+			while True:
+				print("""
+			^‿^ So, what do you need help with?
+
+	1:Ansewring Questions
+
+	2:Main Menu							0:Back to main menu
+
+	3:Colors
+				""")
+				
+				ask_h = raw_input("""			Type a number here ->""")
+				
+				time.sleep(1)
+
+				if ask_h == '1':#help with Ansewring Questions
+					print help_answer
+					
+				elif ask_h == '2':#help with main menu
+					print help_main_menu
+					
+				elif ask_h == '3':#help with colors
+					print help_color
+					
+				elif ask_h == '0':#back to main menu
+					break
+					
+				else:#not defined
+					print("""
+					✖﹏✖
+			✖﹏✖ Sorry. Can you repeat?. ✖﹏✖
+					✖﹏✖
+
+		""")
+					time.sleep(0.5)
+
+		elif action == '6':#STOP
+			print ("\tAlright %s. See you next time! ^‿^\n") % username
+			print("""
+	☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ✙ ✈ ✉ ✌ ✁ ✎ ✐ ❀ ✰ ❁ ☻ ☼ ☽ ☾ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ 
+	""")
+			break
+
+		elif action == '7':#Suggestions
+			feedback = open('Switchy_suggestions.txt','a+')
+			
+			print("""
+			•‿• Alright! Here, I'll let you write what you think of me,
+				and how you would like me to change to improve myself •‿•
+			 """)
+					
+			suggestion = raw_input("\t\tFeedback:\n\t>")
+			
+			new_suggestion = "%s\n\n" % suggestion
+			
+			feedback.write(new_suggestion)
+			
+			feedback.close()
+			
+			time.sleep(0.5)
+			
+			print("""
+			
+			•‿•Thank you for your opinion!•‿•
+			""")
+		
+		else:#not defined
+			time.sleep(1)
+			print("""
+					✖﹏✖
+			✖﹏✖ Sorry but I didn't get it... ✖﹏✖
+					✖﹏✖
+
+		""")
+			time.sleep(0.5)
+
+except:
+	print("\n\n\n\n\n\n\n\n\nSorry, something went wrong")
+	time.sleep(1)
+
+Pin.cleanup()
