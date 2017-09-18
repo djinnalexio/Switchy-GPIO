@@ -1,38 +1,34 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import RPi.GPIO as Pin
+import RPi.GPIO as pin
 import time
-Pin.setmode(Pin.BCM)
-Pin.setwarnings(True)
+pin.setmode(pin.BCM)
+pin.setwarnings(True)
 
 #grounds = 6, 9, 14, 20, 25, 30, 34, 39
 
-blue=25 #22
-Pin.setup(blue, Pin.OUT)
-green=24 #18
-Pin.setup(green, Pin.OUT)
-red=12 #32
-Pin.setup(red, Pin.OUT)
-white2=21 #40
-Pin.setup(white2, Pin.OUT)
-white=17 #11
-Pin.setup(white, Pin.OUT)
+white=21 #40
 yellow=16 #36
-Pin.setup(yellow, Pin.OUT)
-
+red=12 #32
+blue=25 #22
+green=24 #18
+white2=17 #11
+white= (white,white2)
 colors = (blue, green, red, white2, white, yellow)
+pin.setup(colors,pin.OUT)
+
 leds = [blue, green, red, white2, white, yellow]
 
 def turnON(color):
 	"Turns on lights"
-	Pin.output(color,Pin.HIGH)#Instead of 'Pin.HIGH', True can also work
+	pin.output(color,pin.HIGH)#Instead of 'pin.HIGH', True can also work
 	print "\n\tThe light is now on. •‿•\n"
 	time.sleep(0.5)
 
 def turnOFF(color):
 	"Turns off lights"
-	Pin.output(color,Pin.LOW)#Instead of 'Pin.LOW', False can also work
+	pin.output(color,pin.LOW)#Instead of 'pin.LOW', False can also work
 	print "\n\t•‿• The light is now off.\n"
 	time.sleep(0.5)
 
@@ -77,15 +73,14 @@ def blink(color):
 	end_blink = time.time() + duration#time end blink
 	while time.time() < end_blink:#while current time is small then end time
 		print (int(time.time() - t_s_b))# count blink = current time - time start blink
-		Pin.output(color,Pin.HIGH)
+		pin.output(color,pin.HIGH)
 		time.sleep(blink_inter)
-		Pin.output(color,Pin.LOW)
+		pin.output(color,pin.LOW)
 		time.sleep(blink_inter)
 
 
 	print "\n\tWell, 'looks like that's it! anything else?!^‿^\n"
 	time.sleep(0.5)
-
 
 def moving_light():
 	"Pattern 1: moving light"
@@ -128,9 +123,9 @@ def moving_light():
 	while time.time() < etp: 
 		for i in leds:
 			print (int(time.time() - stp))# elased time = current time - time start blink
-			Pin.output(i,True)
+			pin.output(i,True)
 			time.sleep(inter)
-			Pin.output(i,False)
+			pin.output(i,False)
 		
 def moving_light2():
 	"Pattern 2: 2 moving lights"
@@ -172,33 +167,33 @@ def moving_light2():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(white,True)
+		pin.output(white,True)
 		
 		time.sleep(inter)
-		Pin.output(white2,False)
-		Pin.output(green,True)
+		pin.output(white2,False)
+		pin.output(green,True)
 		
 		time.sleep(inter)
-		Pin.output(white,False)
-		Pin.output(blue,True)
+		pin.output(white,False)
+		pin.output(blue,True)
 		
 		time.sleep(inter)
-		Pin.output(green,False)
-		Pin.output(red,True)
+		pin.output(green,False)
+		pin.output(red,True)
 		
 		time.sleep(inter)
-		Pin.output(blue,False)
-		Pin.output(yellow,True)
+		pin.output(blue,False)
+		pin.output(yellow,True)
 		
 		time.sleep(inter)
-		Pin.output(red,False)
-		Pin.output(white2,True)
+		pin.output(red,False)
+		pin.output(white2,True)
 		
 		time.sleep(inter)
-		Pin.output(yellow,False)
+		pin.output(yellow,False)
 	
 	time.sleep(inter)	
-	Pin.output(white2,False)
+	pin.output(white2,False)
 	
 def moving_shadow():
 	"Pattern 3: moving shadow"
@@ -232,7 +227,7 @@ def moving_shadow():
 	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
 
 	time.sleep(1)
-	Pin.output(colors, True)
+	pin.output(colors, True)
 
 	print "		•‿•Starting in:"
 	time.sleep(1)	
@@ -243,33 +238,33 @@ def moving_shadow():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(white,False)
+		pin.output(white,False)
 		
 		time.sleep(inter)
-		Pin.output(white,True)
-		Pin.output(green,False)
+		pin.output(white,True)
+		pin.output(green,False)
 		
 		time.sleep(inter)
-		Pin.output(green,True)
-		Pin.output(blue,False)
+		pin.output(green,True)
+		pin.output(blue,False)
 		
 		time.sleep(inter)
-		Pin.output(blue,True)
-		Pin.output(red,False)
+		pin.output(blue,True)
+		pin.output(red,False)
 		
 		time.sleep(inter)
-		Pin.output(red,True)
-		Pin.output(yellow,False)
+		pin.output(red,True)
+		pin.output(yellow,False)
 		
 		time.sleep(inter)
-		Pin.output(yellow,True)
-		Pin.output(white2,False)
+		pin.output(yellow,True)
+		pin.output(white2,False)
 		
 		time.sleep(inter)
-		Pin.output(white2,True)
+		pin.output(white2,True)
 	
 	time.sleep(1)
-	Pin.output(colors, False)
+	pin.output(colors, False)
 
 def moving_shadow2():
 	"Pattern 4: 2 moving shadows"
@@ -303,7 +298,7 @@ def moving_shadow2():
 	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
 
 	time.sleep(1)
-	Pin.output(colors, True)
+	pin.output(colors, True)
 
 	print "		•‿•Starting in:"
 	time.sleep(1)	
@@ -314,36 +309,36 @@ def moving_shadow2():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(white,False)
+		pin.output(white,False)
 		
 		time.sleep(inter)
-		Pin.output(white2,True)
-		Pin.output(green,False)
+		pin.output(white2,True)
+		pin.output(green,False)
 		
 		time.sleep(inter)
-		Pin.output(white,True)
-		Pin.output(blue,False)
+		pin.output(white,True)
+		pin.output(blue,False)
 		
 		time.sleep(inter)
-		Pin.output(green,True)
-		Pin.output(red,False)
+		pin.output(green,True)
+		pin.output(red,False)
 		
 		time.sleep(inter)
-		Pin.output(blue,True)
-		Pin.output(yellow,False)
+		pin.output(blue,True)
+		pin.output(yellow,False)
 		
 		time.sleep(inter)
-		Pin.output(red,True)
-		Pin.output(white2,False)
+		pin.output(red,True)
+		pin.output(white2,False)
 		
 		time.sleep(inter)
-		Pin.output(yellow,True)
+		pin.output(yellow,True)
 	
 	time.sleep(inter)	
-	Pin.output(white2,True)
+	pin.output(white2,True)
 	
 	time.sleep(1)
-	Pin.output(colors, False)
+	pin.output(colors, False)
 
 
 help_answer = """
@@ -526,7 +521,7 @@ try:
 				time.sleep(0.5)
 
 				if color == 'all' or color == 'all of them':
-					Pin.output(colors,Pin.HIGH)
+					pin.output(colors,pin.HIGH)
 					print "\n\tAll the lights are now on. •‿•\n"
 					time.sleep(0.5)
 
@@ -567,7 +562,7 @@ try:
 				time.sleep(0.5)
 
 				if color == 'all' or color == 'all of them':
-					Pin.output(colors,Pin.LOW)
+					pin.output(colors,pin.LOW)
 					print "\n\tAll the lights are now off. •‿•\n"
 					time.sleep(0.5)
 
@@ -770,9 +765,9 @@ try:
 
 		""")
 			time.sleep(0.5)
+	pin.cleanup()
 
-except:
-	print("\n\n\n\n\n\n\n\n\nSorry, something went wrong")
+
+except KeyboardInterrupt:
+	print("\n\n\n\n\n\n\n\n\nSorry, code interrupted")
 	time.sleep(1)
-
-Pin.cleanup()

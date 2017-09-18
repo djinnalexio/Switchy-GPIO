@@ -1,5 +1,1 @@
 Make introduction and help section more precise
-
-Make codes shorter and get rid of 'copy and paste' sequences of code
-
-Re-enter characters for emojis

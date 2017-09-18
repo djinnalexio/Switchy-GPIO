@@ -2,24 +2,19 @@
 # -*- coding: utf-8 -*-
 import random
 import time
-import RPi.GPIO as Pin
-Pin.setmode(Pin.BCM)
-Pin.setwarnings(True)
+import RPi.GPIO as pin
+pin.setmode(pin.BCM)
+pin.setwarnings(True)
 
 left=21 #40
-Pin.setup(left, Pin.OUT)
 yellow=16 #36
-Pin.setup(yellow, Pin.OUT)
 red=12 #32
-Pin.setup(red, Pin.OUT)
 blue=25 #22
-Pin.setup(blue, Pin.OUT)
 green=24 #18
-Pin.setup(green, Pin.OUT)
 right=17 #11
-Pin.setup(right, Pin.OUT)
 white= (left, right)
 all = (left, yellow, red, blue, green, right)
+pin.setup(all,pin.OUT)
 
 color_list = ['all', 'left', 'yellow', 'red', 'blue', 'green', 'right', 'white']
 led_list = [left, yellow, red, blue, green, right]
@@ -59,7 +54,7 @@ def ask_color(a,b):
 
 def check(color,color_name):
 	try:
-		if Pin.input(color) == True:#only works with one integer
+		if pin.input(color) == True:#only works with one integer
 			print '\n%s is on' % color_name
 		else:
 			print '\n%s is off' % color_name
@@ -68,7 +63,7 @@ def check(color,color_name):
 
 def turnON(color,color_name):
 	"Turns on lights"
-	Pin.output(color,Pin.HIGH)#Instead of 'Pin.HIGH', True can also work
+	pin.output(color,pin.HIGH)#Instead of 'pin.HIGH', True can also work
 	if color_name == 'all':
 		print "\nAll the lights are now on. •‿•\n"
 	else:
@@ -77,7 +72,7 @@ def turnON(color,color_name):
 
 def turnOFF(color,color_name):
 	"Turns off lights"
-	Pin.output(color,Pin.LOW)#Instead of 'Pin.LOW', False can also work
+	pin.output(color,pin.LOW)#Instead of 'pin.LOW', False can also work
 	if color_name == 'all':
 		print "\nAll the lights are now off. •‿•\n"
 	else:
@@ -110,9 +105,9 @@ def blink(color,color_name):
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		Pin.output(color,True)
+		pin.output(color,True)
 		time.sleep(inter)
-		Pin.output(color,False)
+		pin.output(color,False)
 		time.sleep(inter)
 			
 	print "\ndone\n"
@@ -223,103 +218,108 @@ def light_shows():
 			time.sleep(1)
 
 def moving_light(duration,inter):
-	Pin.output(all,False)
+	pin.output(all,False)
 	print ('code is running')
 	etp = time.time() + duration # etp = ending time pattern
 	while time.time() <= etp:		
 		for i in led_list:
-			Pin.output(i,True)
+			pin.output(i,True)
 			time.sleep(inter)
-			Pin.output(i,False)
+			pin.output(i,False)
 
 def moving_shadow(duration,inter):
-	Pin.output(all,True)
+	pin.output(all,True)
 	print ('code is running')
 	etp = time.time() + duration # etp = ending time pattern
 	while time.time() <= etp:		
 		for i in led_list:
-			Pin.output(i,False)
+			pin.output(i,False)
 			time.sleep(inter)
-			Pin.output(i,True)
-	Pin.output(all,False)
+			pin.output(i,True)
+	pin.output(all,False)
 	
 def police_car(duration):
 	led_list = [blue,red]
-	Pin.output(all,False)
+	pin.output(all,False)
 	time.sleep(.75)
-	Pin.output(white,True)
+	pin.output(white,True)
 	time.sleep(.5)
 	print ('code is running')
 	etp = time.time() + duration # etp = ending time pattern
 	while time.time() <= etp:		
 		for i in led_list:
-			Pin.output(i,True)
+			pin.output(i,True)
 			time.sleep(.2)
-			Pin.output(i,False)
-	Pin.output(all,False)
+			pin.output(i,False)
+	pin.output(all,False)
 
 def back_an_forth(duration,inter):
 	l1 = (red,blue)
 	l2 = (yellow,green)
 	light_list = [l1,l2]
-	Pin.output(all,False)
+	pin.output(all,False)
 	time.sleep(.75)
-	Pin.output(white,True)
+	pin.output(white,True)
 	time.sleep(.5)
 	print ('code is running')
 	etp = time.time() + duration # etp = ending time pattern
 	while time.time() <= etp:		
 		for i in light_list:
-			Pin.output(i,True)
+			pin.output(i,True)
 			time.sleep(inter)
-			Pin.output(i,False)
-	Pin.output(all,False)
+			pin.output(i,False)
+	pin.output(all,False)
 
 def two_by_two(duration,inter):
 	l1 = (left,yellow)
 	l2 = (red,blue)
 	l3 = (green,right)
 	light_list = [l1,l2,l3]
-	Pin.output(all,False)
+	pin.output(all,False)
 	print ('code is running')
 	etp = time.time() + duration # etp = ending time pattern
 	while time.time() <= etp:		
 		for i in light_list:
-			Pin.output(i,True)
+			pin.output(i,True)
 			time.sleep(inter)
-			Pin.output(i,False)
+			pin.output(i,False)
 
 def rm(duration,inter):
-	Pin.output(all,False)
+	pin.output(all,False)
 	print ('code is running')
 	etp = time.time() + duration # etp = ending time pattern
 	while time.time() <= etp:		
 		for i in led_list:
 			j = random.choice(led_list)
-			Pin.output(j,True)
-			time.sleep(inter)
-			Pin.output(j,False)
+			pin.output(j,True)
+			time.sleep(0.1)
+			pin.output(j,False)
 			time.sleep(inter)
 
-while True:
-	print("""
+try:
+	while True:
+		print("""
 1 -> Light Switch		2 -> Blink
 
 3 -> Light Shows
-	""")
-	action = raw_input("""			 ->""")
-	if action == '1':
-		switch()
+		""")
+		action = raw_input("""			 ->""")
+		if action == '1':
+			switch()
+			
+		elif action == '2':
+			ask_color('blink',blink)
 		
-	elif action == '2':
-		ask_color('blink',blink)
-	
-	elif action == '3':
-		light_shows()
-		
-	else:
-		print 'not defined'
-		break	
+		elif action == '3':
+			light_shows()
+			
+		else:
+			print 'not defined'
+			break	
 
-Pin.output(all,Pin.LOW)
-Pin.cleanup()
+	print 'Safe exit. GPIO pins cleaned'
+	pin.cleanup()
+	
+except KeyboardInterrupt:
+	print "code interrupted. GPIO pins cleaned"
+	pin.cleanup()
