@@ -14,7 +14,12 @@ Here are the GPIO pins we will be using and the colors they will correspond to:
 
 BCM	Color	Physical placement
 
-21	Left White	40 16	Yellow	36 12	Red	32 25	Blue	22 24	Green	18 17	Right White	11
+21	Left White	40
+16	Yellow		36
+12	Red			32
+25	Blue		22
+24	Green	18
+13	Right White	33
 
 The pins that can be used as Ground are 6, 9, 14, 20, 25, 30, 34 and 39.
 

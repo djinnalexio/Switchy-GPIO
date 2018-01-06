@@ -11,7 +11,7 @@ yellow=16 #36
 red=12 #32
 blue=25 #22
 green=24 #18
-right=17 #11
+right=13 #33
 white= (left, right)
 all = (left, yellow, red, blue, green, right)
 pin.setup(all,pin.OUT)

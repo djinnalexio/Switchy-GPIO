@@ -1,40 +1,45 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import RPi.GPIO as pin
+#By Andre Akue
+
+import RPi.GPIO as GPIO
 import time
-pin.setmode(pin.BCM)
-pin.setwarnings(True)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(True)
+#setting warnings as false is not recommended as you could miss some important information
+#If you don't want to see those messages, the best way is to just find and fix the problems
 
 #grounds = 6, 9, 14, 20, 25, 30, 34, 39
 
-white=21 #40
+white=21 #40 commented out numbers here represent the physical number of the pins
 yellow=16 #36
 red=12 #32
 blue=25 #22
 green=24 #18
-white2=17 #11
-white= (white,white2)
+white2=13 #33
+white= (white,white2) 
 colors = (blue, green, red, white2, white, yellow)
-pin.setup(colors,pin.OUT)
+GPIO.setup(colors,GPIO.OUT) #setups up all pins at once as outputs for the lights
 
 leds = [blue, green, red, white2, white, yellow]
 
+#creating the different options the programm as to offer
+
 def turnON(color):
 	"Turns on lights"
-	pin.output(color,pin.HIGH)#Instead of 'pin.HIGH', True can also work
+	GPIO.output(color,GPIO.HIGH)#Instead of 'GPIO.HIGH', True can also work
 	print "\n\tThe light is now on. •‿•\n"
 	time.sleep(0.5)
 
 def turnOFF(color):
 	"Turns off lights"
-	pin.output(color,pin.LOW)#Instead of 'pin.LOW', False can also work
+	GPIO.output(color,GPIO.LOW)#Instead of 'GPIO.LOW', False can also work
 	print "\n\t•‿• The light is now off.\n"
 	time.sleep(0.5)
 
 def blink(color):
 	"Makes lights blink for <duration> seconds"
-
 	ask_duration = raw_input("\n\tFor how long do you want the light(s) to blink? (in seconds)\n\t\t>")
 	if ask_duration.isdigit():
 		duration = int(ask_duration)
@@ -73,15 +78,16 @@ def blink(color):
 	end_blink = time.time() + duration#time end blink
 	while time.time() < end_blink:#while current time is small then end time
 		print (int(time.time() - t_s_b))# count blink = current time - time start blink
-		pin.output(color,pin.HIGH)
+		GPIO.output(color,GPIO.HIGH)
 		time.sleep(blink_inter)
-		pin.output(color,pin.LOW)
+		GPIO.output(color,GPIO.LOW)
 		time.sleep(blink_inter)
 
 
 	print "\n\tWell, 'looks like that's it! anything else?!^‿^\n"
 	time.sleep(0.5)
 
+#creating light shows
 def moving_light():
 	"Pattern 1: moving light"
 
@@ -123,9 +129,9 @@ def moving_light():
 	while time.time() < etp: 
 		for i in leds:
 			print (int(time.time() - stp))# elased time = current time - time start blink
-			pin.output(i,True)
+			GPIO.output(i,True)
 			time.sleep(inter)
-			pin.output(i,False)
+			GPIO.output(i,False)
 		
 def moving_light2():
 	"Pattern 2: 2 moving lights"
@@ -167,33 +173,33 @@ def moving_light2():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		pin.output(white,True)
+		GPIO.output(white,True)
 		
 		time.sleep(inter)
-		pin.output(white2,False)
-		pin.output(green,True)
+		GPIO.output(white2,False)
+		GPIO.output(green,True)
 		
 		time.sleep(inter)
-		pin.output(white,False)
-		pin.output(blue,True)
+		GPIO.output(white,False)
+		GPIO.output(blue,True)
 		
 		time.sleep(inter)
-		pin.output(green,False)
-		pin.output(red,True)
+		GPIO.output(green,False)
+		GPIO.output(red,True)
 		
 		time.sleep(inter)
-		pin.output(blue,False)
-		pin.output(yellow,True)
+		GPIO.output(blue,False)
+		GPIO.output(yellow,True)
 		
 		time.sleep(inter)
-		pin.output(red,False)
-		pin.output(white2,True)
+		GPIO.output(red,False)
+		GPIO.output(white2,True)
 		
 		time.sleep(inter)
-		pin.output(yellow,False)
+		GPIO.output(yellow,False)
 	
 	time.sleep(inter)	
-	pin.output(white2,False)
+	GPIO.output(white2,False)
 	
 def moving_shadow():
 	"Pattern 3: moving shadow"
@@ -227,7 +233,7 @@ def moving_shadow():
 	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
 
 	time.sleep(1)
-	pin.output(colors, True)
+	GPIO.output(colors, True)
 
 	print "		•‿•Starting in:"
 	time.sleep(1)	
@@ -238,33 +244,33 @@ def moving_shadow():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		pin.output(white,False)
+		GPIO.output(white,False)
 		
 		time.sleep(inter)
-		pin.output(white,True)
-		pin.output(green,False)
+		GPIO.output(white,True)
+		GPIO.output(green,False)
 		
 		time.sleep(inter)
-		pin.output(green,True)
-		pin.output(blue,False)
+		GPIO.output(green,True)
+		GPIO.output(blue,False)
 		
 		time.sleep(inter)
-		pin.output(blue,True)
-		pin.output(red,False)
+		GPIO.output(blue,True)
+		GPIO.output(red,False)
 		
 		time.sleep(inter)
-		pin.output(red,True)
-		pin.output(yellow,False)
+		GPIO.output(red,True)
+		GPIO.output(yellow,False)
 		
 		time.sleep(inter)
-		pin.output(yellow,True)
-		pin.output(white2,False)
+		GPIO.output(yellow,True)
+		GPIO.output(white2,False)
 		
 		time.sleep(inter)
-		pin.output(white2,True)
+		GPIO.output(white2,True)
 	
 	time.sleep(1)
-	pin.output(colors, False)
+	GPIO.output(colors, False)
 
 def moving_shadow2():
 	"Pattern 4: 2 moving shadows"
@@ -298,7 +304,7 @@ def moving_shadow2():
 	print "\n\tThe light show will run for %s seconds.\n\tSpeed: %s." % (duration, speed)
 
 	time.sleep(1)
-	pin.output(colors, True)
+	GPIO.output(colors, True)
 
 	print "		•‿•Starting in:"
 	time.sleep(1)	
@@ -309,36 +315,36 @@ def moving_shadow2():
 	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
-		pin.output(white,False)
+		GPIO.output(white,False)
 		
 		time.sleep(inter)
-		pin.output(white2,True)
-		pin.output(green,False)
+		GPIO.output(white2,True)
+		GPIO.output(green,False)
 		
 		time.sleep(inter)
-		pin.output(white,True)
-		pin.output(blue,False)
+		GPIO.output(white,True)
+		GPIO.output(blue,False)
 		
 		time.sleep(inter)
-		pin.output(green,True)
-		pin.output(red,False)
+		GPIO.output(green,True)
+		GPIO.output(red,False)
 		
 		time.sleep(inter)
-		pin.output(blue,True)
-		pin.output(yellow,False)
+		GPIO.output(blue,True)
+		GPIO.output(yellow,False)
 		
 		time.sleep(inter)
-		pin.output(red,True)
-		pin.output(white2,False)
+		GPIO.output(red,True)
+		GPIO.output(white2,False)
 		
 		time.sleep(inter)
-		pin.output(yellow,True)
+		GPIO.output(yellow,True)
 	
 	time.sleep(inter)	
-	pin.output(white2,True)
+	GPIO.output(white2,True)
 	
 	time.sleep(1)
-	pin.output(colors, False)
+	GPIO.output(colors, False)
 
 
 help_answer = """
@@ -407,7 +413,7 @@ help_color = """
 		Type 'none' if you want to go back to the main menu.
 				"""
 
-
+#where Switchy starts
 try:				
 	while True:#Skip Intro?
 		skip_intro = raw_input("Do you want to skip the introduction? 'Y' or 'N' >")
@@ -493,6 +499,8 @@ try:
 		else:
 			print ("\n<Please answer with Y for 'Yes' or N for 'No'>\n")
 
+#this below loop is the main menu of Switchy
+
 	while True:#app main menu: on, off, blink, light shows, help, (leave)
 			
 		print("""
@@ -521,7 +529,7 @@ try:
 				time.sleep(0.5)
 
 				if color == 'all' or color == 'all of them':
-					pin.output(colors,pin.HIGH)
+					GPIO.output(colors,GPIO.HIGH)
 					print "\n\tAll the lights are now on. •‿•\n"
 					time.sleep(0.5)
 
@@ -562,7 +570,7 @@ try:
 				time.sleep(0.5)
 
 				if color == 'all' or color == 'all of them':
-					pin.output(colors,pin.LOW)
+					GPIO.output(colors,GPIO.LOW)
 					print "\n\tAll the lights are now off. •‿•\n"
 					time.sleep(0.5)
 
@@ -705,7 +713,7 @@ try:
 				
 				time.sleep(1)
 
-				if ask_h == '1':#help with Ansewring Questions
+				if ask_h == '1':#help with Answering Questions
 					print help_answer
 					
 				elif ask_h == '2':#help with main menu
@@ -755,6 +763,9 @@ try:
 			
 			•‿•Thank you for your opinion!•‿•
 			""")
+# This option allows you to write into the file 'Switchy_suggestions.txt'
+#It's purpose is for the user to leave impressions and take notes on what could be improved in the code
+
 		
 		else:#not defined
 			time.sleep(1)
@@ -765,9 +776,10 @@ try:
 
 		""")
 			time.sleep(0.5)
-	pin.cleanup()
+	GPIO.cleanup()
 
 
 except KeyboardInterrupt:
 	print("\n\n\n\n\n\n\n\n\nSorry, code interrupted")
 	time.sleep(1)
+	GPIO.cleanup()
