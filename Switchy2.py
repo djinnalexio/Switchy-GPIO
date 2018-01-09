@@ -6,15 +6,15 @@ import RPi.GPIO as pin
 pin.setmode(pin.BCM)
 pin.setwarnings(True)
 
-left=21 #40
+white=21 #40 commented out numbers here represent the physical number of the pins
 yellow=16 #36
 red=12 #32
 blue=25 #22
 green=24 #18
-right=13 #33
-white= (left, right)
-all = (left, yellow, red, blue, green, right)
-pin.setup(all,pin.OUT)
+white2=13 #33
+white= (white,white2) 
+colors = (blue, green, red, white2, white, yellow)
+GPIO.setup(colors,GPIO.OUT) #setups up all pins at once as outputs for the lights
 
 color_list = ['all', 'left', 'yellow', 'red', 'blue', 'green', 'right', 'white']
 led_list = [left, yellow, red, blue, green, right]

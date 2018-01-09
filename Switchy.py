@@ -170,7 +170,7 @@ def moving_light2():
 		print "\t\t\t",3 - i
 		time.sleep(1)
 
-	stp = time.time() ; etp = time.time() + duration# stp/etp = starting / ending time pattern
+	stp = time.time() ; etp = time.time() + duration# stp/etp = Starting / Ending Time of Pattern
 	while time.time() < etp: 
 		print (int(time.time() - stp))# elased time = current time - time start blink
 		GPIO.output(white,True)
