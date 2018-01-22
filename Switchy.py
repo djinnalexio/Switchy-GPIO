@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-__author__ = "Andre Akue"
+"By Andre Akue"
 
 import RPi.GPIO as GPIO
 import time
