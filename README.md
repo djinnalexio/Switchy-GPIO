@@ -1,4 +1,4 @@
-# GPIO-Interactive-Led-switch
+# GPIO Interactive Led Switch
 This is a user-friendly switch to control leds plugged to the GPIO of the Raspberry Pi 3
 
 The programming language I use is python.
